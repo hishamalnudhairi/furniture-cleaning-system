@@ -24,10 +24,10 @@
     @include('admin.service-requests._flash')
 
     {{-- الفلاتر --}}
-    <div class="mb-4 flex flex-wrap gap-2">
+    <div class="mb-4 flex flex-wrap gap-1.5">
         @foreach ($tabs as $value => $label)
             <a href="{{ route('admin.service-requests.index', array_filter(['status' => $value, 'q' => $search])) }}"
-               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
+               class="rounded-full px-3.5 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                 {{ $label }}
             </a>
         @endforeach
@@ -36,25 +36,29 @@
     {{-- البحث --}}
     <form method="GET" action="{{ route('admin.service-requests.index') }}" class="mb-5 flex gap-2">
         @if ($status)<input type="hidden" name="status" value="{{ $status }}">@endif
-        <input name="q" type="text" value="{{ $search }}"
-               placeholder="{{ __('Search by name, phone, or request no.') }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
-        <button type="submit" class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900">{{ __('Search') }}</button>
+        <div class="relative flex-1">
+            <span class="pointer-events-none absolute inset-y-0 flex items-center text-slate-400 ltr:left-3 rtl:right-3">🔍</span>
+            <input name="q" type="search" value="{{ $search }}"
+                   placeholder="{{ __('Search by name, phone, or request no.') }}"
+                   class="field ltr:pl-10 rtl:pr-10">
+        </div>
+        <button type="submit" class="btn btn-dark shrink-0">{{ __('Search') }}</button>
     </form>
 
     {{-- القائمة --}}
     @forelse ($requests as $req)
-        <div class="mb-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+        <a href="{{ route('admin.service-requests.show', $req) }}"
+           class="mb-3 block rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md hover:ring-brand-300">
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex items-center gap-2">
                         <span class="font-bold text-brand-700">{{ $req->request_number }}</span>
-                        <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusMeta[$req->status]['class'] ?? 'bg-slate-100 text-slate-600' }}">
+                        <span class="rounded-full px-2.5 py-0.5 text-xs font-semibold {{ $statusMeta[$req->status]['class'] ?? 'bg-slate-100 text-slate-600' }}">
                             {{ $statusMeta[$req->status]['label'] ?? $req->status }}
                         </span>
                     </div>
                     <p class="mt-1 font-medium text-slate-800">{{ $req->customer_name }}</p>
-                    <p class="text-sm text-slate-500">{{ $req->customer_phone }}</p>
+                    <p class="text-sm text-slate-500" dir="ltr">{{ $req->customer_phone }}</p>
                     <p class="mt-1 text-sm text-slate-600">
                         {{ $req->wilaya }}@if ($req->area) — {{ $req->area }}@endif
                     </p>
@@ -68,16 +72,11 @@
                         <span>🕒 {{ $req->created_at->format('Y-m-d H:i') }}</span>
                     </div>
                 </div>
-                <a href="{{ route('admin.service-requests.show', $req) }}"
-                   class="shrink-0 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">
-                    {{ __('Details') }}
-                </a>
+                <span class="shrink-0 self-center text-slate-300"><span class="ib-flip">→</span></span>
             </div>
-        </div>
+        </a>
     @empty
-        <div class="rounded-xl bg-white p-8 text-center text-slate-500 ring-1 ring-slate-200">
-            {{ __('No requests found.') }}
-        </div>
+        <x-empty icon="📥" :message="__('No requests found.')" />
     @endforelse
 
     <div class="mt-4">

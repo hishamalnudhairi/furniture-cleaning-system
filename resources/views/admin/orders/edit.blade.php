@@ -7,13 +7,7 @@
     <h1 class="mb-1 mt-2 text-2xl font-bold text-slate-900">{{ __('Edit order') }} — {{ $order->order_number }}</h1>
     <p class="mb-4 text-sm text-slate-500">{{ __('You can edit the discount and the order notes only.') }}</p>
 
-    @if ($errors->any())
-        <div class="mb-4 rounded-lg bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
-            <ul class="list-inside list-disc space-y-0.5">
-                @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
-            </ul>
-        </div>
-    @endif
+    @include('partials.form-errors')
 
     <form method="POST" action="{{ route('admin.orders.update', $order) }}" class="space-y-5">
         @csrf
@@ -30,16 +24,16 @@
             <div class="mb-4">
                 <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Discount') }}</label>
                 <input id="discount" name="discount" type="number" min="0" step="0.01" value="{{ old('discount', (float) $order->discount) }}"
-                       class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                       class="field">
             </div>
 
             <div>
                 <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Order notes') }}</label>
-                <textarea name="notes" rows="3" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">{{ old('notes', $order->notes) }}</textarea>
+                <textarea name="notes" rows="3" class="field">{{ old('notes', $order->notes) }}</textarea>
             </div>
         </section>
 
-        <button type="submit" class="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">{{ __('Save changes') }}</button>
+        <button type="submit" class="btn btn-primary w-full text-base">{{ __('Save changes') }}</button>
     </form>
 
     <script>

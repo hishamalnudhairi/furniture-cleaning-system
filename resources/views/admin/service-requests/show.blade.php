@@ -41,7 +41,7 @@
         <h2 class="mb-3 text-base font-bold text-slate-900">{{ __('Customer') }}</h2>
         <dl class="grid gap-3 text-sm sm:grid-cols-2">
             <div><dt class="text-slate-400">{{ __('Full name') }}</dt><dd class="font-medium text-slate-800">{{ $request->customer_name }}</dd></div>
-            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800">{{ $request->customer_phone }}</dd></div>
+            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800" dir="ltr">{{ $request->customer_phone }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Customer type') }}</dt><dd class="text-slate-800">{{ $request->customer_type ? __(ucfirst($request->customer_type)) : '—' }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Wilaya') }}</dt><dd class="text-slate-800">{{ $request->wilaya ?: '—' }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Area / Village') }}</dt><dd class="text-slate-800">{{ $request->area ?: '—' }}</dd></div>
@@ -89,7 +89,7 @@
     <section class="mb-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <h2 class="mb-3 text-base font-bold text-slate-900">{{ __('Map location') }}</h2>
         @if ($request->latitude && $request->longitude)
-            <p class="text-sm text-slate-600">{{ $request->latitude }}, {{ $request->longitude }}</p>
+            <p class="text-sm text-slate-600" dir="ltr">{{ $request->latitude }}, {{ $request->longitude }}</p>
         @else
             <p class="text-sm text-slate-400">{{ __('No coordinates provided.') }}</p>
         @endif

@@ -30,13 +30,7 @@
     <h1 class="mb-1 mt-2 text-2xl font-bold text-slate-900">{{ __('Convert to official order') }}</h1>
     <p class="mb-4 text-sm text-slate-500">{{ __('Review and set the final prices. The customer never sees a final price until you confirm.') }}</p>
 
-    @if ($errors->any())
-        <div class="mb-4 rounded-lg bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
-            <ul class="list-inside list-disc space-y-0.5">
-                @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
-            </ul>
-        </div>
-    @endif
+    @include('partials.form-errors')
 
     <form method="POST" action="{{ route('admin.service-requests.convert', $request) }}" class="space-y-5">
         @csrf
@@ -48,27 +42,27 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Full name') }}</label>
                     <input name="customer_name" value="{{ old('customer_name', $request->customer_name) }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Phone number') }}</label>
                     <input name="phone" value="{{ old('phone', $request->customer_phone) }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Wilaya') }}</label>
                     <input name="wilaya" value="{{ old('wilaya', $request->wilaya) }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Area / Village') }}</label>
                     <input name="area" value="{{ old('area', $request->area) }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
                 <div class="sm:col-span-2">
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Detailed address') }}</label>
                     <input name="address" value="{{ old('address', $request->address) }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
             </div>
         </section>
@@ -83,17 +77,17 @@
                         <div class="sm:col-span-6">
                             <label class="mb-1 block text-xs text-slate-500">{{ __('Service / description') }}</label>
                             <input name="items[{{ $i }}][description]" value="{{ $row['description'] ?? '' }}"
-                                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                   class="field">
                         </div>
                         <div class="sm:col-span-2">
                             <label class="mb-1 block text-xs text-slate-500">{{ __('Quantity') }}</label>
                             <input name="items[{{ $i }}][quantity]" type="number" min="1" step="1" value="{{ $row['quantity'] ?? 1 }}"
-                                   class="item-qty w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                   class="item-qty field">
                         </div>
                         <div class="sm:col-span-3">
                             <label class="mb-1 block text-xs text-slate-500">{{ __('Unit price') }}</label>
                             <input name="items[{{ $i }}][unit_price]" type="number" min="0" step="0.01" value="{{ $row['unit_price'] ?? '' }}"
-                                   class="item-price w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                   class="item-price field">
                         </div>
                         <div class="flex items-end sm:col-span-1">
                             <button type="button" class="remove-row w-full rounded-lg bg-rose-50 px-2 py-2 text-sm text-rose-600 hover:bg-rose-100">✕</button>
@@ -115,11 +109,11 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Discount') }}</label>
                     <input id="discount" name="discount" type="number" min="0" step="0.01" value="{{ old('discount', 0) }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Payment method') }}</label>
-                    <select name="payment_method" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                    <select name="payment_method" class="field">
                         @foreach (['cash' => __('Cash'), 'card' => __('Card'), 'transfer' => __('Transfer'), 'later' => __('Pay later')] as $val => $label)
                             <option value="{{ $val }}" @selected(old('payment_method', 'cash') === $val)>{{ $label }}</option>
                         @endforeach
@@ -127,7 +121,7 @@
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Payment status') }}</label>
-                    <select name="payment_status" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                    <select name="payment_status" class="field">
                         @foreach (['unpaid' => __('Unpaid'), 'partial' => __('Partial'), 'paid' => __('Paid')] as $val => $label)
                             <option value="{{ $val }}" @selected(old('payment_status', 'unpaid') === $val)>{{ $label }}</option>
                         @endforeach
@@ -137,7 +131,7 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Paid amount') }}</label>
                     <input id="paid_amount" name="paid_amount" type="number" min="0" step="0.01" value="{{ old('paid_amount', 0) }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                           class="field">
                 </div>
             </div>
 
@@ -154,10 +148,10 @@
         {{-- ملاحظات داخلية --}}
         <section class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <label class="mb-1 block text-base font-bold text-slate-900">{{ __('Internal notes') }}</label>
-            <textarea name="notes" rows="2" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">{{ old('notes') }}</textarea>
+            <textarea name="notes" rows="2" class="field">{{ old('notes') }}</textarea>
         </section>
 
-        <button type="submit" class="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">
+        <button type="submit" class="btn btn-primary w-full text-base">
             {{ __('Create official order') }}
         </button>
     </form>
@@ -168,15 +162,15 @@
             <input type="hidden" name="items[__INDEX__][service_id]" value="">
             <div class="sm:col-span-6">
                 <label class="mb-1 block text-xs text-slate-500">{{ __('Service / description') }}</label>
-                <input name="items[__INDEX__][description]" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="items[__INDEX__][description]" class="field">
             </div>
             <div class="sm:col-span-2">
                 <label class="mb-1 block text-xs text-slate-500">{{ __('Quantity') }}</label>
-                <input name="items[__INDEX__][quantity]" type="number" min="1" step="1" value="1" class="item-qty w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="items[__INDEX__][quantity]" type="number" min="1" step="1" value="1" class="item-qty field">
             </div>
             <div class="sm:col-span-3">
                 <label class="mb-1 block text-xs text-slate-500">{{ __('Unit price') }}</label>
-                <input name="items[__INDEX__][unit_price]" type="number" min="0" step="0.01" class="item-price w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="items[__INDEX__][unit_price]" type="number" min="0" step="0.01" class="item-price field">
             </div>
             <div class="flex items-end sm:col-span-1">
                 <button type="button" class="remove-row w-full rounded-lg bg-rose-50 px-2 py-2 text-sm text-rose-600 hover:bg-rose-100">✕</button>

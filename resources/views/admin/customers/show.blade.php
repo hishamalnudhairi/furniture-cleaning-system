@@ -29,7 +29,7 @@
 
     <section class="mb-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <dl class="grid gap-3 text-sm sm:grid-cols-2">
-            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800">{{ $customer->phone }}</dd></div>
+            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800" dir="ltr">{{ $customer->phone }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Customer type') }}</dt><dd class="text-slate-800">{{ $typeLabels[$customer->customer_type] ?? '—' }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Wilaya') }}</dt><dd class="text-slate-800">{{ $customer->wilaya ?: '—' }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Area / Village') }}</dt><dd class="text-slate-800">{{ $customer->area ?: '—' }}</dd></div>

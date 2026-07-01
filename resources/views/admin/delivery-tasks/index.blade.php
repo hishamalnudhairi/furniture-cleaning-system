@@ -19,10 +19,10 @@
     @include('partials.flash')
 
     {{-- فلاتر الحالة --}}
-    <div class="mb-3 flex flex-wrap gap-2">
+    <div class="mb-3 flex flex-wrap gap-1.5">
         @foreach ($statusTabs as $value => $label)
             <a href="{{ route('admin.delivery-tasks.index', array_filter(['status' => $value, 'driver_id' => $driverId, 'date' => $date, 'q' => $search])) }}"
-               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
+               class="rounded-full px-3.5 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                 {{ $label }}
             </a>
         @endforeach
@@ -31,19 +31,19 @@
     {{-- فلاتر السائق/التاريخ/البحث --}}
     <form method="GET" action="{{ route('admin.delivery-tasks.index') }}" class="mb-5 grid gap-2 sm:grid-cols-4">
         @if ($status)<input type="hidden" name="status" value="{{ $status }}">@endif
-        <select name="driver_id" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
+        <select name="driver_id" class="field">
             <option value="">{{ __('All drivers') }}</option>
             @foreach ($drivers as $d)
                 <option value="{{ $d->id }}" @selected((string) $driverId === (string) $d->id)>{{ $d->name }}</option>
             @endforeach
         </select>
-        <input name="date" type="date" value="{{ $date }}" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-        <input name="q" type="text" value="{{ $search }}" placeholder="{{ __('Search by order no., name, or phone.') }}" class="rounded-lg border border-slate-300 px-3 py-2 text-sm">
-        <button type="submit" class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900">{{ __('Search') }}</button>
+        <input name="date" type="date" value="{{ $date }}" class="field">
+        <input name="q" type="search" value="{{ $search }}" placeholder="{{ __('Search by order no., name, or phone.') }}" class="field">
+        <button type="submit" class="btn btn-dark">{{ __('Search') }}</button>
     </form>
 
     @forelse ($tasks as $task)
-        <div class="mb-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+        <div class="mb-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex flex-wrap items-center gap-2">
@@ -52,7 +52,7 @@
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $taskStatus[$task->status]['class'] ?? 'bg-slate-100' }}">{{ $taskStatus[$task->status]['label'] ?? $task->status }}</span>
                     </div>
                     <p class="mt-1 font-medium text-slate-800">{{ $task->order?->customer?->name }}</p>
-                    <p class="text-sm text-slate-500">{{ $task->order?->customer?->phone }}</p>
+                    <p class="text-sm text-slate-500" dir="ltr">{{ $task->order?->customer?->phone }}</p>
                     <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
                         <span>{{ __('Driver') }}: {{ $task->driver?->name ?? '—' }}</span>
                         <span>{{ __('Customer fee') }}: {{ number_format((float) $task->customer_fee, 2) }}</span>
@@ -76,7 +76,7 @@
             @endif
         </div>
     @empty
-        <div class="rounded-xl bg-white p-8 text-center text-slate-500 ring-1 ring-slate-200">{{ __('No delivery tasks found.') }}</div>
+        <x-empty icon="📍" :message="__('No delivery tasks found.')" />
     @endforelse
 
     <div class="mt-4">{{ $tasks->links() }}</div>

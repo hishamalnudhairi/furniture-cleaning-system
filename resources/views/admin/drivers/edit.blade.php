@@ -12,6 +12,6 @@
         <section class="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             @include('admin.drivers._form')
         </section>
-        <button type="submit" class="mt-5 w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">{{ __('Save changes') }}</button>
+        <button type="submit" class="mt-5 btn btn-primary w-full text-base">{{ __('Save changes') }}</button>
     </form>
 @endsection

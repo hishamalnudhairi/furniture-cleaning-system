@@ -26,7 +26,7 @@
     {{-- بيانات السائق --}}
     <section class="mb-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
         <dl class="grid gap-3 text-sm sm:grid-cols-2">
-            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800">{{ $driver->phone }}</dd></div>
+            <div><dt class="text-slate-400">{{ __('Phone number') }}</dt><dd class="font-medium text-slate-800" dir="ltr">{{ $driver->phone }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Payment type') }}</dt><dd class="text-slate-800">{{ $payTypes[$driver->payment_type] ?? $driver->payment_type }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Default delivery fee') }}</dt><dd class="text-slate-800">{{ number_format((float) $driver->default_delivery_fee, 2) }}</dd></div>
             <div><dt class="text-slate-400">{{ __('Status') }}</dt><dd>{{ $driver->is_active ? __('Active') : __('Inactive') }}</dd></div>
@@ -62,18 +62,18 @@
                 @csrf
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Amount') }}</label>
-                    <input name="amount" type="number" min="0.01" step="0.01" value="{{ old('amount') }}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                    <input name="amount" type="number" min="0.01" step="0.01" value="{{ old('amount') }}" required class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Paid at') }}</label>
-                    <input name="paid_at" type="date" value="{{ old('paid_at') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                    <input name="paid_at" type="date" value="{{ old('paid_at') }}" class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Notes') }}</label>
-                    <input name="notes" type="text" value="{{ old('notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                    <input name="notes" type="text" value="{{ old('notes') }}" class="field">
                 </div>
                 <div class="sm:col-span-3">
-                    <button class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">{{ __('Record payment') }}</button>
+                    <button class="btn btn-primary w-full">{{ __('Record payment') }}</button>
                 </div>
             </form>
             @error('amount')<p class="mt-2 text-sm text-rose-600">{{ $message }}</p>@enderror

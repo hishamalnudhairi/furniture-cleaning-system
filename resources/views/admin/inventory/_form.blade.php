@@ -5,23 +5,17 @@
     $unit = old('unit', $item->unit ?? 'liter');
 @endphp
 
-@if ($errors->any())
-    <div class="mb-4 rounded-lg bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
-        <ul class="list-inside list-disc space-y-0.5">
-            @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
-        </ul>
-    </div>
-@endif
+@include('partials.form-errors')
 
 <div class="grid gap-4 sm:grid-cols-2">
     <div class="sm:col-span-2">
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Item name') }}</label>
         <input name="name" value="{{ old('name', $item->name ?? '') }}" required
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+               class="field">
     </div>
     <div>
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Unit') }}</label>
-        <select name="unit" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+        <select name="unit" class="field">
             @foreach ($units as $val => $label)
                 <option value="{{ $val }}" @selected($unit === $val)>{{ $label }}</option>
             @endforeach
@@ -33,7 +27,7 @@
         <div>
             <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Opening quantity') }}</label>
             <input name="current_quantity" type="number" min="0" step="0.01" value="{{ old('current_quantity', 0) }}"
-                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                   class="field">
         </div>
     @else
         <div>
@@ -47,22 +41,22 @@
     <div>
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Alert quantity') }}</label>
         <input name="alert_quantity" type="number" min="0" step="0.01" value="{{ old('alert_quantity', $item->min_quantity ?? 0) }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+               class="field">
     </div>
     <div>
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Purchase price') }}</label>
         <input name="purchase_price" type="number" min="0" step="0.01" value="{{ old('purchase_price', $item->cost_price ?? '') }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+               class="field">
     </div>
     <div>
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Status') }}</label>
-        <select name="status" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+        <select name="status" class="field">
             <option value="active" @selected($status === 'active')>{{ __('Active') }}</option>
             <option value="inactive" @selected($status === 'inactive')>{{ __('Inactive') }}</option>
         </select>
     </div>
     <div class="sm:col-span-2">
         <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Notes') }}</label>
-        <textarea name="notes" rows="2" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">{{ old('notes', $item->notes ?? '') }}</textarea>
+        <textarea name="notes" rows="2" class="field">{{ old('notes', $item->notes ?? '') }}</textarea>
     </div>
 </div>

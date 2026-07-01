@@ -53,9 +53,9 @@
             <h2 class="mb-3 text-base font-bold text-emerald-700">➕ {{ __('Add quantity') }}</h2>
             <form method="POST" action="{{ route('admin.inventory.add', $item) }}" class="space-y-3">
                 @csrf
-                <input name="quantity" type="number" min="0.01" step="0.01" placeholder="{{ __('Quantity') }}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="movement_date" type="date" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="quantity" type="number" min="0.01" step="0.01" placeholder="{{ __('Quantity') }}" required class="field">
+                <input name="movement_date" type="date" class="field">
+                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="field">
                 <button class="w-full rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700">{{ __('Add quantity') }}</button>
             </form>
         </section>
@@ -64,9 +64,9 @@
             <h2 class="mb-3 text-base font-bold text-rose-700">➖ {{ __('Dispense quantity') }}</h2>
             <form method="POST" action="{{ route('admin.inventory.dispense', $item) }}" class="space-y-3">
                 @csrf
-                <input name="quantity" type="number" min="0.01" step="0.01" placeholder="{{ __('Quantity') }}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="movement_date" type="date" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="quantity" type="number" min="0.01" step="0.01" placeholder="{{ __('Quantity') }}" required class="field">
+                <input name="movement_date" type="date" class="field">
+                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="field">
                 <button class="w-full rounded-lg bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-rose-700">{{ __('Dispense quantity') }}</button>
             </form>
             @error('quantity')<p class="mt-2 text-sm text-rose-600">{{ $message }}</p>@enderror
@@ -79,9 +79,9 @@
             <h2 class="mb-3 text-base font-bold text-sky-700">✎ {{ __('Manual adjustment') }}</h2>
             <form method="POST" action="{{ route('admin.inventory.adjust', $item) }}" class="grid gap-3 sm:grid-cols-3">
                 @csrf
-                <input name="quantity" type="number" min="0" step="0.01" placeholder="{{ __('New quantity') }}" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="movement_date" type="date" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                <input name="quantity" type="number" min="0" step="0.01" placeholder="{{ __('New quantity') }}" required class="field">
+                <input name="movement_date" type="date" class="field">
+                <input name="notes" type="text" placeholder="{{ __('Notes') }}" class="field">
                 <div class="sm:col-span-3">
                     <button class="w-full rounded-lg bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-sky-700">{{ __('Apply adjustment') }}</button>
                 </div>

@@ -268,7 +268,7 @@
         {{-- شريط الحفظ الثابت --}}
         <div class="fixed inset-x-0 bottom-0 border-t border-slate-200 bg-white/95 p-3 backdrop-blur">
             <div class="mx-auto max-w-5xl">
-                <button type="submit" class="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">💾 {{ __('Save settings') }}</button>
+                <button type="submit" class="btn btn-primary w-full text-base">💾 {{ __('Save settings') }}</button>
             </div>
         </div>
     </form>

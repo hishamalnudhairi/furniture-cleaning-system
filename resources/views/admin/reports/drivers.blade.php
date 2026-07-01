@@ -10,15 +10,15 @@
     <form method="GET" action="{{ route('admin.reports.drivers') }}" class="mb-5 grid gap-2 sm:grid-cols-4">
         <div>
             <label class="mb-1 block text-xs text-slate-500">{{ __('From date') }}</label>
-            <input name="start_date" type="date" value="{{ $start }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+            <input name="start_date" type="date" value="{{ $start }}" class="field">
         </div>
         <div>
             <label class="mb-1 block text-xs text-slate-500">{{ __('To date') }}</label>
-            <input name="end_date" type="date" value="{{ $end }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+            <input name="end_date" type="date" value="{{ $end }}" class="field">
         </div>
         <div>
             <label class="mb-1 block text-xs text-slate-500">{{ __('Driver') }}</label>
-            <select name="driver_id" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+            <select name="driver_id" class="field">
                 <option value="">{{ __('All drivers') }}</option>
                 @foreach ($allDrivers as $d)
                     <option value="{{ $d->id }}" @selected((string) $driverId === (string) $d->id)>{{ $d->name }}</option>

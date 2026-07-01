@@ -8,14 +8,14 @@
     <div class="mb-4 flex items-center justify-between gap-3">
         <h1 class="text-2xl font-bold text-slate-900">{{ __('Services') }}</h1>
         @if (auth()->user()->isAdmin())
-            <a href="{{ route('admin.services.create') }}" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">+ {{ __('Add service') }}</a>
+            <a href="{{ route('admin.services.create') }}" class="btn btn-primary text-sm">+ {{ __('Add service') }}</a>
         @endif
     </div>
 
     @include('partials.flash')
 
     @forelse ($services as $service)
-        <div class="mb-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
+        <div class="mb-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex flex-wrap items-center gap-2">
@@ -34,12 +34,12 @@
                     </div>
                 </div>
                 @if (auth()->user()->isAdmin())
-                    <a href="{{ route('admin.services.edit', $service) }}" class="shrink-0 rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200">{{ __('Edit') }}</a>
+                    <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-soft shrink-0 text-sm">✎ {{ __('Edit') }}</a>
                 @endif
             </div>
         </div>
     @empty
-        <div class="rounded-xl bg-white p-8 text-center text-slate-500 ring-1 ring-slate-200">{{ __('No services found.') }}</div>
+        <x-empty icon="🧺" :message="__('No services found.')" />
     @endforelse
 
     <div class="mt-4">{{ $services->links() }}</div>
