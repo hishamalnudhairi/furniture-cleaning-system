@@ -464,5 +464,10 @@
     "Created service :name": "تم إنشاء الخدمة :name",
     "Service created successfully.": "تم إنشاء الخدمة بنجاح.",
     "Updated service :name": "تم تعديل الخدمة :name",
-    "Service updated successfully.": "تم تعديل الخدمة بنجاح."
+    "Service updated successfully.": "تم تعديل الخدمة بنجاح.",
+
+    "Clear filters": "مسح الفلاتر",
+    "Financial": "المؤشرات المالية",
+    "Operations": "المؤشرات التشغيلية",
+    "Organize your shop configuration in groups below.": "نظّم إعدادات محلّك ضمن مجموعات مرتّبة بالأسفل."
 }

@@ -464,5 +464,10 @@
     "Created service :name": "Created service :name",
     "Service created successfully.": "Service created successfully.",
     "Updated service :name": "Updated service :name",
-    "Service updated successfully.": "Service updated successfully."
+    "Service updated successfully.": "Service updated successfully.",
+
+    "Clear filters": "Clear filters",
+    "Financial": "Financial",
+    "Operations": "Operations",
+    "Organize your shop configuration in groups below.": "Organize your shop configuration in groups below."
 }

@@ -5,24 +5,55 @@
 @section('content')
     @php $s = $settings; @endphp
 
-    <h1 class="mb-4 text-2xl font-bold text-slate-900">{{ __('Settings') }}</h1>
+    <h1 class="mb-1 text-2xl font-bold text-slate-900">{{ __('Settings') }}</h1>
+    <p class="mb-4 text-sm text-slate-500">{{ __('Organize your shop configuration in groups below.') }}</p>
 
     @include('partials.flash')
 
     @if ($errors->any())
-        <div class="mb-4 rounded-lg bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
-            <ul class="list-inside list-disc space-y-0.5">
-                @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
-            </ul>
+        <div class="mb-4 flex items-start gap-3 rounded-xl bg-rose-50 p-4 text-sm text-rose-700 ring-1 ring-rose-200">
+            <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-rose-600 text-xs font-bold text-white">✕</span>
+            <div>
+                <p class="font-semibold">{{ __('Please correct the following:') }}</p>
+                <ul class="mt-1 list-inside list-disc space-y-0.5">
+                    @foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach
+                </ul>
+            </div>
         </div>
     @endif
+
+    {{-- شريط تنقّل سريع بين المجموعات --}}
+    @php
+        $settingsNav = [
+            'shop' => ['🏪', __('Shop information')],
+            'hours' => ['🕒', __('Working hours')],
+            'identity' => ['🎨', __('Visual identity')],
+            'tax' => ['🧮', __('Tax')],
+            'invoice' => ['🧾', __('Invoice & printing')],
+            'public' => ['📥', __('Public request page')],
+            'drivers' => ['🚚', __('Drivers settings')],
+            'inventory' => ['📦', __('Inventory settings')],
+            'language' => ['🌐', __('Language')],
+            'general' => ['⚙️', __('General settings')],
+        ];
+    @endphp
+    <nav class="sticky top-[57px] z-20 -mx-4 mb-5 overflow-x-auto border-b border-slate-200 bg-slate-50/95 px-4 py-2 backdrop-blur">
+        <div class="flex gap-2">
+            @foreach ($settingsNav as $anchor => $item)
+                <a href="#s-{{ $anchor }}"
+                   class="flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-medium text-slate-600 ring-1 ring-slate-200 transition hover:bg-brand-50 hover:text-brand-700 hover:ring-brand-300">
+                    <span>{{ $item[0] }}</span>{{ $item[1] }}
+                </a>
+            @endforeach
+        </div>
+    </nav>
 
     <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data" class="space-y-5 pb-24">
         @csrf
         @method('PUT')
 
         {{-- ===== بيانات المحل ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-shop" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🏪 {{ __('Shop information') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Shop name (Arabic)') }}</label><input name="shop_name_ar" value="{{ old('shop_name_ar', $s->shop_name_ar) }}" class="settings-input"></div>
@@ -44,7 +75,7 @@
         </section>
 
         {{-- ===== أوقات العمل ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-hours" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🕒 {{ __('Working hours') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Working days') }}</label><input name="working_days" value="{{ old('working_days', $s->working_days) }}" class="settings-input"></div>
@@ -63,7 +94,7 @@
         </section>
 
         {{-- ===== الهوية البصرية ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-identity" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🎨 {{ __('Visual identity') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -89,7 +120,7 @@
         </section>
 
         {{-- ===== الضريبة ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-tax" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🧮 {{ __('Tax') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Tax name') }}</label><input name="tax_name" value="{{ old('tax_name', $s->tax_name) }}" class="settings-input"></div>
@@ -103,7 +134,7 @@
         </section>
 
         {{-- ===== الفاتورة والطباعة ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-invoice" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🧾 {{ __('Invoice & printing') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Invoice prefix') }}</label><input name="invoice_prefix" value="{{ old('invoice_prefix', $s->invoice_prefix) }}" class="settings-input"></div>
@@ -141,7 +172,7 @@
         </section>
 
         {{-- ===== صفحة طلب العميل ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-public" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">📥 {{ __('Public request page') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Max image count') }}</label><input name="max_image_count" type="number" min="1" max="20" value="{{ old('max_image_count', $s->max_image_count) }}" class="settings-input"></div>
@@ -159,7 +190,7 @@
         </section>
 
         {{-- ===== السائقون ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-drivers" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🚚 {{ __('Drivers settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -179,7 +210,7 @@
         </section>
 
         {{-- ===== المخزون ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-inventory" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">📦 {{ __('Inventory settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Default low stock quantity') }}</label><input name="default_low_stock_quantity" type="number" step="0.01" min="0" value="{{ old('default_low_stock_quantity', $s->inventory_low_stock_threshold) }}" class="settings-input"></div>
@@ -192,7 +223,7 @@
         </section>
 
         {{-- ===== اللغة ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-language" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">🌐 {{ __('Language') }}</h2>
             <div class="grid gap-4 sm:grid-cols-3">
                 <div>
@@ -223,7 +254,7 @@
         </section>
 
         {{-- ===== عام ===== --}}
-        <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <section id="s-general" class="scroll-mt-32 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
             <h2 class="mb-4 text-base font-bold text-brand-700">⚙️ {{ __('General settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-3">
                 <div><label class="settings-label">{{ __('Currency code') }}</label><input name="currency_code" value="{{ old('currency_code', $s->currency_code) }}" class="settings-input"></div>
