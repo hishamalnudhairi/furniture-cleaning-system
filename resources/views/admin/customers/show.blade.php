@@ -9,7 +9,7 @@
             'new' => ['label' => __('New'), 'class' => 'bg-slate-100 text-slate-700'],
             'cleaning' => ['label' => __('Cleaning'), 'class' => 'bg-sky-100 text-sky-800'],
             'ready' => ['label' => __('Ready for delivery'), 'class' => 'bg-emerald-100 text-emerald-800'],
-            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-teal-100 text-teal-800'],
+            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-brand-100 text-brand-800'],
             'cancelled' => ['label' => __('Cancelled'), 'class' => 'bg-rose-100 text-rose-700'],
         ];
         $mapUrl = $customer->location_url ?: (($customer->latitude && $customer->longitude)
@@ -17,7 +17,7 @@
     @endphp
 
     <div class="mb-4 flex items-center justify-between gap-3">
-        <a href="{{ route('admin.customers.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to list') }}</a>
+        <a href="{{ route('admin.customers.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to list') }}</a>
         @if (auth()->user()->isAdmin())
             <a href="{{ route('admin.customers.edit', $customer) }}" class="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-200">{{ __('Edit') }}</a>
         @endif
@@ -53,7 +53,7 @@
         @forelse ($customer->orders as $order)
             <a href="{{ route('admin.orders.show', $order) }}" class="flex items-center justify-between gap-3 border-b border-slate-100 py-2 text-sm last:border-0 hover:bg-slate-50">
                 <div>
-                    <span class="font-semibold text-teal-700">{{ $order->order_number }}</span>
+                    <span class="font-semibold text-brand-700">{{ $order->order_number }}</span>
                     <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusMeta[$order->status]['class'] ?? 'bg-slate-100' }}">{{ $statusMeta[$order->status]['label'] ?? $order->status }}</span>
                     <p class="text-xs text-slate-400">{{ $order->created_at->format('Y-m-d') }}</p>
                 </div>

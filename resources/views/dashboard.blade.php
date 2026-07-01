@@ -43,7 +43,7 @@
         </h1>
         <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
             <span class="text-slate-500">{{ __('Role') }}:</span>
-            <span class="rounded-full bg-teal-100 px-3 py-0.5 font-medium text-teal-800">
+            <span class="rounded-full bg-brand-100 px-3 py-0.5 font-medium text-brand-800">
                 {{ $roleLabels[$user->role] ?? $user->role }}
             </span>
             <span class="text-slate-400">·</span>
@@ -73,10 +73,10 @@
         @foreach ($staffLinks as $link)
             @if (!empty($link['route']))
                 <a href="{{ $link['route'] }}"
-                   class="flex flex-col items-center gap-2 rounded-xl bg-white p-5 text-center shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-400">
+                   class="flex flex-col items-center gap-2 rounded-xl bg-white p-5 text-center shadow-sm ring-1 ring-slate-200 transition hover:ring-brand-400">
                     <span class="text-2xl">{{ $link['icon'] }}</span>
                     <span class="text-sm font-medium text-slate-700">{{ $link['label'] }}</span>
-                    <span class="rounded-full bg-teal-50 px-2 py-0.5 text-[10px] text-teal-600">{{ __('Open') }}</span>
+                    <span class="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] text-brand-600">{{ __('Open') }}</span>
                 </a>
             @else
                 <div class="flex cursor-not-allowed flex-col items-center gap-2 rounded-xl bg-white p-5 text-center shadow-sm ring-1 ring-slate-200">

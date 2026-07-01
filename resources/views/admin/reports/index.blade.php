@@ -27,7 +27,7 @@
             ['route' => 'admin.reports.drivers', 'icon' => '🚚', 'label' => __('Drivers report')],
             ['route' => 'admin.reports.inventory-low', 'icon' => '📦', 'label' => __('Low stock report')],
         ] as $r)
-            <a href="{{ route($r['route']) }}" class="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:ring-teal-400">
+            <a href="{{ route($r['route']) }}" class="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200 transition hover:ring-brand-400">
                 <span class="text-2xl">{{ $r['icon'] }}</span>
                 <span class="font-medium text-slate-700">{{ $r['label'] }}</span>
             </a>

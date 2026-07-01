@@ -15,7 +15,7 @@
     @endphp
 
     <div class="mb-4 flex items-center justify-between gap-3">
-        <a href="{{ route('admin.drivers.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to list') }}</a>
+        <a href="{{ route('admin.drivers.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to list') }}</a>
         <a href="{{ route('admin.drivers.edit', $driver) }}" class="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-200">{{ __('Edit') }}</a>
     </div>
 
@@ -42,7 +42,7 @@
         </div>
         <div class="rounded-xl bg-white p-4 text-center shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-400">{{ __('Total due') }}</p>
-            <p class="mt-1 text-xl font-bold text-teal-700">{{ number_format($totalDue, 2) }}</p>
+            <p class="mt-1 text-xl font-bold text-brand-700">{{ number_format($totalDue, 2) }}</p>
         </div>
         <div class="rounded-xl bg-white p-4 text-center shadow-sm ring-1 ring-slate-200">
             <p class="text-xs text-slate-400">{{ __('Total paid') }}</p>
@@ -73,7 +73,7 @@
                     <input name="notes" type="text" value="{{ old('notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
                 </div>
                 <div class="sm:col-span-3">
-                    <button class="w-full rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-700">{{ __('Record payment') }}</button>
+                    <button class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">{{ __('Record payment') }}</button>
                 </div>
             </form>
             @error('amount')<p class="mt-2 text-sm text-rose-600">{{ $message }}</p>@enderror
@@ -86,7 +86,7 @@
         @forelse ($driver->deliveryTasks->sortByDesc('created_at') as $task)
             <div class="flex items-center justify-between gap-3 border-b border-slate-100 py-2 text-sm last:border-0">
                 <div class="min-w-0">
-                    <a href="{{ route('admin.orders.show', $task->order_id) }}" class="font-medium text-teal-700 hover:underline">{{ $task->order?->order_number }}</a>
+                    <a href="{{ route('admin.orders.show', $task->order_id) }}" class="font-medium text-brand-700 hover:underline">{{ $task->order?->order_number }}</a>
                     <span class="text-slate-400">· {{ $taskTypes[$task->type] ?? $task->type }}</span>
                     <p class="text-xs text-slate-500">{{ $task->order?->customer?->name }}</p>
                 </div>

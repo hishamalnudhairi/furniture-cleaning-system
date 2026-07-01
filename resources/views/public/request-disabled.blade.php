@@ -14,7 +14,7 @@
             {{ $msg ?: __('Online requests are currently unavailable. Please contact us directly.') }}
         </p>
         @if ($settings->show_shop_contact_on_public_page && $settings->business_phone)
-            <p class="mt-3 text-sm font-medium text-teal-700">📞 {{ $settings->business_phone }}</p>
+            <p class="mt-3 text-sm font-medium text-brand-700">📞 {{ $settings->business_phone }}</p>
         @endif
     </div>
 @endsection

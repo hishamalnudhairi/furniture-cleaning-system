@@ -1,5 +1,5 @@
 @if (session('success'))
-    <div class="mb-4 rounded-lg bg-teal-50 p-4 text-sm text-teal-800 ring-1 ring-teal-200">
+    <div class="mb-4 rounded-lg bg-brand-50 p-4 text-sm text-brand-800 ring-1 ring-brand-200">
         {{ session('success') }}
     </div>
 @endif

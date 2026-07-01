@@ -11,7 +11,7 @@
         ];
     @endphp
 
-    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to reports') }}</a>
+    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to reports') }}</a>
     <h1 class="mb-4 mt-2 text-2xl font-bold text-slate-900">{{ __('Low stock report') }}</h1>
 
     @forelse ($items as $item)
@@ -27,7 +27,7 @@
                     <span>{{ __('Alert quantity') }}: {{ rtrim(rtrim(number_format((float) $item->min_quantity, 2), '0'), '.') }}</span>
                 </div>
             </div>
-            <a href="{{ route('admin.inventory.show', $item) }}" class="shrink-0 rounded-lg bg-teal-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-teal-700">{{ __('View') }}</a>
+            <a href="{{ route('admin.inventory.show', $item) }}" class="shrink-0 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-brand-700">{{ __('View') }}</a>
         </div>
     @empty
         <div class="rounded-xl bg-white p-8 text-center text-slate-500 ring-1 ring-slate-200">{{ __('No low stock items.') }}</div>

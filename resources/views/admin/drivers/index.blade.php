@@ -9,7 +9,7 @@
 
     <div class="mb-4 flex items-center justify-between gap-3">
         <h1 class="text-2xl font-bold text-slate-900">{{ __('Drivers') }}</h1>
-        <a href="{{ route('admin.drivers.create') }}" class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700">+ {{ __('Add driver') }}</a>
+        <a href="{{ route('admin.drivers.create') }}" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">+ {{ __('Add driver') }}</a>
     </div>
 
     @include('partials.flash')
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="flex shrink-0 flex-col gap-2">
-                    <a href="{{ route('admin.drivers.show', $driver) }}" class="rounded-lg bg-teal-600 px-3 py-1.5 text-center text-sm font-medium text-white hover:bg-teal-700">{{ __('View') }}</a>
+                    <a href="{{ route('admin.drivers.show', $driver) }}" class="rounded-lg bg-brand-600 px-3 py-1.5 text-center text-sm font-medium text-white hover:bg-brand-700">{{ __('View') }}</a>
                     <a href="{{ route('admin.drivers.edit', $driver) }}" class="rounded-lg bg-slate-100 px-3 py-1.5 text-center text-sm font-medium text-slate-700 hover:bg-slate-200">{{ __('Edit') }}</a>
                 </div>
             </div>

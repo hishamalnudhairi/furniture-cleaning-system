@@ -8,7 +8,7 @@
         $statusMeta = [
             'pending_review' => ['label' => __('Pending review'), 'class' => 'bg-amber-100 text-amber-800'],
             'contacted' => ['label' => __('Contacted'), 'class' => 'bg-sky-100 text-sky-800'],
-            'confirmed' => ['label' => __('Confirmed'), 'class' => 'bg-teal-100 text-teal-800'],
+            'confirmed' => ['label' => __('Confirmed'), 'class' => 'bg-brand-100 text-brand-800'],
             'cancelled' => ['label' => __('Cancelled'), 'class' => 'bg-rose-100 text-rose-700'],
         ];
         $methods = [
@@ -25,14 +25,14 @@
 
     <div class="mb-4 flex items-center justify-between gap-3">
         <a href="{{ route('admin.service-requests.index') }}" class="text-sm text-slate-500 hover:text-slate-700">
-            ← {{ __('Back to list') }}
+            <span class="ib-flip">←</span> {{ __('Back to list') }}
         </a>
         <span class="rounded-full px-3 py-1 text-sm font-medium {{ $statusMeta[$request->status]['class'] ?? 'bg-slate-100 text-slate-600' }}">
             {{ $statusMeta[$request->status]['label'] ?? $request->status }}
         </span>
     </div>
 
-    <h1 class="mb-4 text-2xl font-bold text-teal-700">{{ $request->request_number }}</h1>
+    <h1 class="mb-4 text-2xl font-bold text-brand-700">{{ $request->request_number }}</h1>
 
     @include('admin.service-requests._flash')
 
@@ -130,7 +130,7 @@
         <h2 class="mb-3 text-base font-bold text-slate-900">{{ __('Actions') }}</h2>
 
         @if ($request->isConverted())
-            <p class="text-sm text-teal-700">{{ __('This request has already been converted into an official order.') }}</p>
+            <p class="text-sm text-brand-700">{{ __('This request has already been converted into an official order.') }}</p>
         @endif
 
         <div class="flex flex-wrap gap-2">
@@ -143,7 +143,7 @@
 
             @if ($request->canBeConverted())
                 <a href="{{ route('admin.service-requests.convert.form', $request) }}"
-                   class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700">
+                   class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700">
                     {{ __('Convert to official order') }}
                 </a>
             @endif

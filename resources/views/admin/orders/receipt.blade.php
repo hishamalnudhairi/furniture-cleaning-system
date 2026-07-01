@@ -27,8 +27,8 @@
     @endphp
 
     <div class="no-print flex items-center justify-between gap-2 p-3">
-        <a href="{{ route('admin.orders.show', $order) }}" class="text-sm text-slate-600 hover:text-slate-900">← {{ __('Back') }}</a>
-        <button onclick="window.print()" class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700">🖨️ {{ __('Print') }}</button>
+        <a href="{{ route('admin.orders.show', $order) }}" class="text-sm text-slate-600 hover:text-slate-900"><span class="ib-flip">←</span> {{ __('Back') }}</a>
+        <button onclick="window.print()" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">🖨️ {{ __('Print') }}</button>
     </div>
 
     <div class="receipt mx-auto bg-white p-2 text-xs leading-5 text-black">

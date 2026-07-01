@@ -3,7 +3,7 @@
 @section('title', __('Drivers report'))
 
 @section('content')
-    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to reports') }}</a>
+    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to reports') }}</a>
     <h1 class="mb-4 mt-2 text-2xl font-bold text-slate-900">{{ __('Drivers report') }}</h1>
 
     {{-- الفلتر --}}
@@ -33,7 +33,7 @@
     @forelse ($rows as $row)
         <div class="mb-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
             <div class="flex items-center justify-between gap-3">
-                <a href="{{ route('admin.drivers.show', $row['driver']) }}" class="font-bold text-teal-700 hover:underline">{{ $row['driver']->name }}</a>
+                <a href="{{ route('admin.drivers.show', $row['driver']) }}" class="font-bold text-brand-700 hover:underline">{{ $row['driver']->name }}</a>
                 <span class="text-sm font-bold {{ $row['remaining'] > 0 ? 'text-rose-600' : 'text-emerald-600' }}">{{ __('Remaining for driver') }}: {{ number_format($row['remaining'], 2) }}</span>
             </div>
             <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">

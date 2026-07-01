@@ -11,7 +11,7 @@
         ];
     @endphp
 
-    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to reports') }}</a>
+    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to reports') }}</a>
     <h1 class="mb-4 mt-2 text-2xl font-bold text-slate-900">{{ __('Sales report') }}</h1>
 
     {{-- الفلتر --}}
@@ -47,7 +47,7 @@
         @forelse ($orders as $order)
             <a href="{{ route('admin.orders.show', $order) }}" class="flex items-center justify-between gap-3 border-b border-slate-100 py-2 text-sm last:border-0 hover:bg-slate-50">
                 <div class="min-w-0">
-                    <span class="font-semibold text-teal-700">{{ $order->order_number }}</span>
+                    <span class="font-semibold text-brand-700">{{ $order->order_number }}</span>
                     <span class="text-slate-500">· {{ $order->customer?->name }}</span>
                     <p class="text-xs text-slate-400">{{ $order->created_at->format('Y-m-d') }}</p>
                 </div>

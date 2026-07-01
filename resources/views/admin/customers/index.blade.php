@@ -6,7 +6,7 @@
     <div class="mb-4 flex items-center justify-between gap-3">
         <h1 class="text-2xl font-bold text-slate-900">{{ __('Customers') }}</h1>
         @if (auth()->user()->isAdmin())
-            <a href="{{ route('admin.customers.create') }}" class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700">+ {{ __('Add customer') }}</a>
+            <a href="{{ route('admin.customers.create') }}" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">+ {{ __('Add customer') }}</a>
         @endif
     </div>
 
@@ -14,7 +14,7 @@
 
     <form method="GET" action="{{ route('admin.customers.index') }}" class="mb-5 flex gap-2">
         <input name="q" type="text" value="{{ $search }}" placeholder="{{ __('Search by name or phone') }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
         <button type="submit" class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900">{{ __('Search') }}</button>
     </form>
 
@@ -36,7 +36,7 @@
                         @if ($lastOrder)<span>{{ __('Last order') }}: {{ $lastOrder->created_at->format('Y-m-d') }}</span>@endif
                     </div>
                 </div>
-                <a href="{{ route('admin.customers.show', $customer) }}" class="shrink-0 rounded-lg bg-teal-600 px-3 py-2 text-sm font-medium text-white hover:bg-teal-700">{{ __('Details') }}</a>
+                <a href="{{ route('admin.customers.show', $customer) }}" class="shrink-0 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">{{ __('Details') }}</a>
             </div>
         </div>
     @empty

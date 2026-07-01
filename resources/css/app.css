@@ -5,7 +5,134 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/*
+| ===== سمة النظام (Design Tokens) =====
+| الخط الافتراضي عربي أولًا (Tajawal) مع تدرّج احتياطي لاتيني ونظامي.
+| عائلة اللون "brand" افتراضيًا = درجات teal السابقة نفسها (لا تغيير بصري افتراضي)،
+| ويمكن تخصيصها وقت التشغيل عبر متغيّرات CSS تُحقن من إعدادات المتجر في الـ layout.
+*/
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Tajawal', 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-brand-50: #f0fdfa;
+    --color-brand-100: #ccfbf1;
+    --color-brand-200: #99f6e4;
+    --color-brand-300: #5eead4;
+    --color-brand-400: #2dd4bf;
+    --color-brand-500: #14b8a6;
+    --color-brand-600: #0d9488;
+    --color-brand-700: #0f766e;
+    --color-brand-800: #115e59;
+    --color-brand-900: #134e4a;
+    --color-brand-950: #042f2e;
+
+    --radius-xl: 0.9rem;
+    --radius-2xl: 1.1rem;
+}
+
+/*
+| ===== طبقة الأساس =====
+| ضبط الطباعة العربية: ارتفاع سطر أعلى، منع تقطيع الكلمات، وتنعيم الخط.
+*/
+@layer base {
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--app-bg, var(--color-slate-50));
+        line-height: 1.7;
+        letter-spacing: 0;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* العناوين تحتاج ارتفاع سطر أقل من نص المتن */
+    h1, h2, h3, h4 {
+        line-height: 1.35;
+    }
+
+    /* أرقام مصفوفة ومتناسقة داخل الجداول والفواتير */
+    .tabular-nums, table, .font-mono {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* حالة التركيز الموحّدة (لوحة المفاتيح) */
+    :focus-visible {
+        outline: 2px solid var(--color-brand-500);
+        outline-offset: 2px;
+    }
+
+    ::selection {
+        background-color: var(--color-brand-200);
+        color: var(--color-brand-950);
+    }
+
+    /* سهم يتبع اتجاه الصفحة: يبقى ← في LTR وينقلب → في RTL */
+    .ib-flip {
+        display: inline-block;
+    }
+    [dir="rtl"] .ib-flip {
+        transform: scaleX(-1);
+    }
+}
+
+/*
+| ===== أصناف مساعدة قابلة لإعادة الاستخدام =====
+| توحّد شكل الأزرار والبطاقات والحقول والشارات مع مقاسات لمس ملائمة للجوال (≥ 44px).
+*/
+@layer components {
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 2.75rem;
+        border-radius: 0.75rem;
+        padding-inline: 1.1rem;
+        font-weight: 600;
+        line-height: 1;
+        transition: background-color .15s ease, box-shadow .15s ease, color .15s ease;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: var(--color-brand-600);
+        color: #fff;
+    }
+    .btn-primary:hover {
+        background-color: var(--color-brand-700);
+    }
+
+    .btn-dark {
+        background-color: var(--color-slate-800);
+        color: #fff;
+    }
+    .btn-dark:hover {
+        background-color: var(--color-slate-900);
+    }
+
+    .btn-soft {
+        background-color: var(--color-slate-100);
+        color: var(--color-slate-700);
+    }
+    .btn-soft:hover {
+        background-color: var(--color-slate-200);
+    }
+
+    .field {
+        width: 100%;
+        border-radius: 0.65rem;
+        border: 1px solid var(--color-slate-300);
+        background-color: #fff;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        min-height: 2.75rem;
+    }
+    .field:focus {
+        outline: none;
+        border-color: var(--color-brand-500);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand-500) 25%, transparent);
+    }
 }

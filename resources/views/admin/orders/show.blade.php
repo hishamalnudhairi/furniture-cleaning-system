@@ -8,7 +8,7 @@
             'new' => ['label' => __('New'), 'class' => 'bg-slate-100 text-slate-700'],
             'cleaning' => ['label' => __('Cleaning'), 'class' => 'bg-sky-100 text-sky-800'],
             'ready' => ['label' => __('Ready for delivery'), 'class' => 'bg-emerald-100 text-emerald-800'],
-            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-teal-100 text-teal-800'],
+            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-brand-100 text-brand-800'],
             'cancelled' => ['label' => __('Cancelled'), 'class' => 'bg-rose-100 text-rose-700'],
         ];
         $payMeta = [
@@ -23,14 +23,14 @@
     @endphp
 
     <div class="mb-4 flex items-center justify-between gap-3">
-        <a href="{{ route('admin.orders.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to list') }}</a>
+        <a href="{{ route('admin.orders.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to list') }}</a>
         <div class="flex gap-2">
             <span class="rounded-full px-3 py-1 text-sm font-medium {{ $statusMeta[$order->status]['class'] ?? 'bg-slate-100' }}">{{ $statusMeta[$order->status]['label'] ?? $order->status }}</span>
             <span class="rounded-full px-3 py-1 text-sm font-medium {{ $payMeta[$order->payment_status]['class'] ?? 'bg-slate-100' }}">{{ $payMeta[$order->payment_status]['label'] ?? $order->payment_status }}</span>
         </div>
     </div>
 
-    <h1 class="mb-4 text-2xl font-bold text-teal-700">{{ $order->order_number }}</h1>
+    <h1 class="mb-4 text-2xl font-bold text-brand-700">{{ $order->order_number }}</h1>
 
     @include('partials.flash')
 
@@ -78,12 +78,12 @@
         <div class="mt-4 space-y-1 border-t border-slate-200 pt-3 text-sm">
             <div class="flex justify-between"><span class="text-slate-500">{{ __('Subtotal') }}</span><span>{{ number_format((float) $order->subtotal, 2) }}</span></div>
             <div class="flex justify-between"><span class="text-slate-500">{{ __('Discount') }}</span><span>{{ number_format((float) $order->discount, 2) }}</span></div>
-            <div class="flex justify-between text-base"><span class="font-semibold">{{ __('Total') }}</span><span class="font-bold text-teal-700">{{ number_format((float) $order->total, 2) }}</span></div>
+            <div class="flex justify-between text-base"><span class="font-semibold">{{ __('Total') }}</span><span class="font-bold text-brand-700">{{ number_format((float) $order->total, 2) }}</span></div>
             <div class="flex justify-between"><span class="text-slate-500">{{ __('Paid') }}</span><span>{{ number_format((float) $order->paid_amount, 2) }}</span></div>
             <div class="flex justify-between"><span class="text-slate-500">{{ __('Remaining') }}</span><span class="font-bold {{ (float) $order->due_amount > 0 ? 'text-rose-600' : 'text-emerald-600' }}">{{ number_format((float) $order->due_amount, 2) }}</span></div>
         </div>
 
-        <a href="{{ route('admin.orders.edit', $order) }}" class="mt-3 inline-block text-sm font-medium text-teal-700 hover:underline">✎ {{ __('Edit order') }}</a>
+        <a href="{{ route('admin.orders.edit', $order) }}" class="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline">✎ {{ __('Edit order') }}</a>
     </section>
 
     {{-- الفاتورة والطباعة --}}
@@ -142,7 +142,7 @@
                         <input name="notes" type="text" value="{{ old('notes') }}" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
                     </div>
                     <div class="sm:col-span-2">
-                        <button class="w-full rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-700">{{ __('Save payment') }}</button>
+                        <button class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">{{ __('Save payment') }}</button>
                     </div>
                 </form>
                 @error('amount')<p class="mt-2 text-sm text-rose-600">{{ $message }}</p>@enderror
@@ -156,7 +156,7 @@
                     $actions = [
                         'cleaning' => ['label' => __('Start cleaning'), 'class' => 'bg-sky-600 hover:bg-sky-700'],
                         'ready' => ['label' => __('Mark ready'), 'class' => 'bg-emerald-600 hover:bg-emerald-700'],
-                        'delivered' => ['label' => __('Mark delivered'), 'class' => 'bg-teal-600 hover:bg-teal-700'],
+                        'delivered' => ['label' => __('Mark delivered'), 'class' => 'bg-brand-600 hover:bg-brand-700'],
                     ];
                 @endphp
                 @foreach ($actions as $value => $meta)
@@ -252,7 +252,7 @@
                         <input name="notes" type="text" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
                     </div>
                     <div class="sm:col-span-2">
-                        <button class="w-full rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-teal-700">{{ __('Create delivery task') }}</button>
+                        <button class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">{{ __('Create delivery task') }}</button>
                     </div>
                 </form>
             @endif
@@ -269,7 +269,7 @@
         @if ($sr)
             <p class="mt-1 text-xs text-slate-400">
                 {{ __('Source request') }}:
-                <a href="{{ route('admin.service-requests.show', $sr) }}" class="text-teal-600 hover:underline">{{ $sr->request_number }}</a>
+                <a href="{{ route('admin.service-requests.show', $sr) }}" class="text-brand-600 hover:underline">{{ $sr->request_number }}</a>
             </p>
         @endif
     </section>

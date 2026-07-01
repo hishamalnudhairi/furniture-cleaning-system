@@ -8,7 +8,7 @@
     <div class="mb-4 flex items-center justify-between gap-3">
         <h1 class="text-2xl font-bold text-slate-900">{{ __('Services') }}</h1>
         @if (auth()->user()->isAdmin())
-            <a href="{{ route('admin.services.create') }}" class="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700">+ {{ __('Add service') }}</a>
+            <a href="{{ route('admin.services.create') }}" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">+ {{ __('Add service') }}</a>
         @endif
     </div>
 

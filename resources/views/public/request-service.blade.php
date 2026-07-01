@@ -23,7 +23,7 @@
         @if ($settings->show_logo_on_public_page && $settings->logo_path)
             <img src="{{ asset('storage/'.$settings->logo_path) }}" alt="" class="mb-3 h-16 w-16 rounded-2xl object-cover">
         @else
-            <div class="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-600 text-2xl text-white">✦</div>
+            <div class="mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 text-2xl text-white">✦</div>
         @endif
 
         <h1 class="text-xl font-bold text-slate-900">{{ $businessName }}</h1>
@@ -64,17 +64,17 @@
                 <div class="sm:col-span-2">
                     <label class="mb-1 block text-sm font-medium text-slate-700">{!! __('Full name') !!} {!! $req() !!}</label>
                     <input name="customer_name" type="text" value="{{ old('customer_name') }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Phone number') }} {!! $req() !!}</label>
                     <input name="phone" type="tel" value="{{ old('phone') }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Customer type') }}</label>
                     <select name="customer_type"
-                            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                            class="field">
                         <option value="">{{ __('— Optional —') }}</option>
                         @foreach (['individual' => __('Individual'), 'company' => __('Company'), 'mosque' => __('Mosque'), 'organization' => __('Organization')] as $val => $label)
                             <option value="{{ $val }}" @selected(old('customer_type') === $val)>{{ $label }}</option>
@@ -84,17 +84,17 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Wilaya') }} {!! $req() !!}</label>
                     <input name="wilaya" type="text" value="{{ old('wilaya') }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Area / Village') }} {!! $req() !!}</label>
                     <input name="area" type="text" value="{{ old('area') }}" required
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
                 <div class="sm:col-span-2">
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Detailed address') }}</label>
                     <input name="address" type="text" value="{{ old('address') }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
             </div>
         </section>
@@ -110,10 +110,10 @@
                     data-locating="{{ __('Locating...') }}"
                     data-done="{{ __('Location captured ✓') }}"
                     data-error="{{ __('Could not get your location. Please paste a Google Maps link instead.') }}"
-                    class="mb-3 w-full rounded-lg bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-700">
+                    class="btn btn-primary mb-3 w-full">
                 📍 {{ __('Use my current location') }}
             </button>
-            <p id="location-status" class="mb-3 text-xs font-medium text-teal-700"></p>
+            <p id="location-status" class="mb-3 text-xs font-medium text-brand-700"></p>
 
             <div class="grid gap-3 sm:grid-cols-2">
                 <div>
@@ -132,14 +132,14 @@
                 <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Or paste a Google Maps link') }}</label>
                 <input id="location_url" name="location_url" type="text" value="{{ old('location_url') }}"
                        placeholder="https://maps.google.com/..."
-                       class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                       class="field">
             </div>
 
             <div class="mt-3">
                 <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Location notes') }}</label>
                 <input name="location_notes" type="text" value="{{ old('location_notes') }}"
                        placeholder="{{ __('e.g. near the mosque, white gate') }}"
-                       class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                       class="field">
             </div>
         </section>
 
@@ -154,7 +154,7 @@
                     <div class="rounded-xl border border-slate-200 p-3">
                         <label class="flex items-center gap-3">
                             <input type="checkbox" name="items[{{ $service->id }}][selected]" value="1"
-                                   class="svc-check h-5 w-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500"
+                                   class="svc-check h-5 w-5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
                                    data-target="svc-{{ $service->id }}" @checked($checked)>
                             <span class="font-medium text-slate-800">{{ $serviceName($service) }}</span>
                         </label>
@@ -163,12 +163,12 @@
                             <div>
                                 <label class="mb-1 block text-xs text-slate-500">{{ __('Quantity') }}</label>
                                 <input name="items[{{ $service->id }}][quantity]" type="number" min="1" value="{{ old("items.$service->id.quantity", 1) }}"
-                                       class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                       class="field">
                             </div>
                             <div>
                                 <label class="mb-1 block text-xs text-slate-500">{{ __('Size') }}</label>
                                 <select name="items[{{ $service->id }}][size]"
-                                        class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                        class="field">
                                     @foreach (['unknown' => __('Unknown'), 'small' => __('Small'), 'medium' => __('Medium'), 'large' => __('Large')] as $val => $label)
                                         <option value="{{ $val }}" @selected(old("items.$service->id.size") === $val)>{{ $label }}</option>
                                     @endforeach
@@ -177,7 +177,7 @@
                             <div>
                                 <label class="mb-1 block text-xs text-slate-500">{{ __('Notes') }}</label>
                                 <input name="items[{{ $service->id }}][notes]" type="text" value="{{ old("items.$service->id.notes") }}"
-                                       class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                                       class="field">
                             </div>
                         </div>
                     </div>
@@ -188,14 +188,14 @@
                 <div class="rounded-xl border border-dashed border-slate-300 p-3">
                     <label class="flex items-center gap-3">
                         <input type="checkbox" name="items[other][selected]" value="1"
-                               class="svc-check h-5 w-5 rounded border-slate-300 text-teal-600 focus:ring-teal-500"
+                               class="svc-check h-5 w-5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
                                data-target="svc-other" @checked($otherChecked)>
                         <span class="font-medium text-slate-800">{{ __('Other service') }}</span>
                     </label>
                     <div id="svc-other" class="mt-3 {{ $otherChecked ? '' : 'hidden' }}">
                         <input name="items[other][description]" type="text" value="{{ old('items.other.description') }}"
                                placeholder="{{ __('Describe the service you need') }}"
-                               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
+                               class="field">
                     </div>
                 </div>
             </div>
@@ -207,7 +207,7 @@
 
             <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Service method') }} {!! $req() !!}</label>
             <select name="service_method" required
-                    class="mb-4 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    class="mb-4 field">
                 <option value="">{{ __('— Select —') }}</option>
                 @foreach ([
                     'cleaning_at_customer_location' => __('Cleaning at customer location'),
@@ -223,12 +223,12 @@
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Preferred date') }}</label>
                     <input name="preferred_date" type="date" value="{{ old('preferred_date') }}"
-                           class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                           class="field">
                 </div>
                 <div>
                     <label class="mb-1 block text-sm font-medium text-slate-700">{{ __('Preferred period') }}</label>
                     <select name="preferred_period"
-                            class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+                            class="field">
                         <option value="">{{ __('— Optional —') }}</option>
                         @foreach (['morning' => __('Morning'), 'afternoon' => __('Afternoon'), 'evening' => __('Evening')] as $val => $label)
                             <option value="{{ $val }}" @selected(old('preferred_period') === $val)>{{ $label }}</option>
@@ -246,14 +246,16 @@
                     {{ __('You can attach up to :count photos, max :size MB each.', ['count' => $maxImages, 'size' => round($maxImageKb / 1024, 1)]) }}
                 </p>
                 <input name="images[]" type="file" accept=".jpg,.jpeg,.png,.webp" multiple
-                       class="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-teal-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-teal-700 hover:file:bg-teal-100">
+                       class="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-brand-700 hover:file:bg-brand-100">
             </section>
         @endif
 
-        <button type="submit"
-                class="w-full rounded-xl bg-teal-600 px-4 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-teal-700">
-            {{ __('Submit request') }}
-        </button>
+        {{-- شريط إرسال ثابت أسفل الشاشة على الجوال ليبقى الزر في المتناول --}}
+        <div class="sticky bottom-0 z-20 -mx-4 border-t border-slate-200 bg-slate-50/90 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0">
+            <button type="submit" class="btn btn-primary w-full text-base shadow-md">
+                {{ __('Submit request') }}
+            </button>
+        </div>
     </form>
 
     <script>

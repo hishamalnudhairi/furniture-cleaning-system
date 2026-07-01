@@ -3,7 +3,7 @@
 @section('title', __('Customer dues report'))
 
 @section('content')
-    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to reports') }}</a>
+    <a href="{{ route('admin.reports.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to reports') }}</a>
     <h1 class="mb-4 mt-2 text-2xl font-bold text-slate-900">{{ __('Customer dues report') }}</h1>
 
     @forelse ($rows as $row)

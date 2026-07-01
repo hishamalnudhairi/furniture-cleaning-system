@@ -26,7 +26,7 @@
         }
     @endphp
 
-    <a href="{{ route('admin.service-requests.show', $request) }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back') }}</a>
+    <a href="{{ route('admin.service-requests.show', $request) }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back') }}</a>
     <h1 class="mb-1 mt-2 text-2xl font-bold text-slate-900">{{ __('Convert to official order') }}</h1>
     <p class="mb-4 text-sm text-slate-500">{{ __('Review and set the final prices. The customer never sees a final price until you confirm.') }}</p>
 
@@ -145,7 +145,7 @@
             <div class="mt-4 space-y-1 rounded-lg bg-slate-50 p-4 text-sm">
                 <div class="flex justify-between"><span class="text-slate-500">{{ __('Subtotal') }}</span><span id="sum-subtotal" class="font-medium">0.00</span></div>
                 <div class="flex justify-between"><span class="text-slate-500">{{ __('Discount') }}</span><span id="sum-discount" class="font-medium">0.00</span></div>
-                <div class="flex justify-between border-t border-slate-200 pt-1 text-base"><span class="font-semibold">{{ __('Total') }}</span><span id="sum-total" class="font-bold text-teal-700">0.00</span></div>
+                <div class="flex justify-between border-t border-slate-200 pt-1 text-base"><span class="font-semibold">{{ __('Total') }}</span><span id="sum-total" class="font-bold text-brand-700">0.00</span></div>
                 <div class="flex justify-between"><span class="text-slate-500">{{ __('Paid') }}</span><span id="sum-paid" class="font-medium">0.00</span></div>
                 <div class="flex justify-between"><span class="text-slate-500">{{ __('Remaining') }}</span><span id="sum-remaining" class="font-bold text-rose-600">0.00</span></div>
             </div>
@@ -157,7 +157,7 @@
             <textarea name="notes" rows="2" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">{{ old('notes') }}</textarea>
         </section>
 
-        <button type="submit" class="w-full rounded-xl bg-teal-600 px-4 py-3 text-base font-semibold text-white hover:bg-teal-700">
+        <button type="submit" class="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">
             {{ __('Create official order') }}
         </button>
     </form>

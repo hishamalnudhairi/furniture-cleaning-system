@@ -22,7 +22,7 @@
     <div class="mb-3 flex flex-wrap gap-2">
         @foreach ($statusTabs as $value => $label)
             <a href="{{ route('admin.delivery-tasks.index', array_filter(['status' => $value, 'driver_id' => $driverId, 'date' => $date, 'q' => $search])) }}"
-               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-teal-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
+               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
                 {{ $label }}
             </a>
         @endforeach
@@ -47,7 +47,7 @@
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex flex-wrap items-center gap-2">
-                        <a href="{{ route('admin.orders.show', $task->order_id) }}" class="font-bold text-teal-700 hover:underline">{{ $task->order?->order_number }}</a>
+                        <a href="{{ route('admin.orders.show', $task->order_id) }}" class="font-bold text-brand-700 hover:underline">{{ $task->order?->order_number }}</a>
                         <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">{{ $taskTypes[$task->type] ?? $task->type }}</span>
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $taskStatus[$task->status]['class'] ?? 'bg-slate-100' }}">{{ $taskStatus[$task->status]['label'] ?? $task->status }}</span>
                     </div>

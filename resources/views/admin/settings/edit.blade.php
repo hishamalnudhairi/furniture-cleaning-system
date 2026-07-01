@@ -23,7 +23,7 @@
 
         {{-- ===== بيانات المحل ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🏪 {{ __('Shop information') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🏪 {{ __('Shop information') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Shop name (Arabic)') }}</label><input name="shop_name_ar" value="{{ old('shop_name_ar', $s->shop_name_ar) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Shop name (English)') }}</label><input name="shop_name_en" value="{{ old('shop_name_en', $s->shop_name_en) }}" class="settings-input"></div>
@@ -45,7 +45,7 @@
 
         {{-- ===== أوقات العمل ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🕒 {{ __('Working hours') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🕒 {{ __('Working hours') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Working days') }}</label><input name="working_days" value="{{ old('working_days', $s->working_days) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Day off') }}</label><input name="day_off" value="{{ old('day_off', $s->day_off) }}" class="settings-input"></div>
@@ -64,7 +64,7 @@
 
         {{-- ===== الهوية البصرية ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🎨 {{ __('Visual identity') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🎨 {{ __('Visual identity') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div>
                     <label class="settings-label">{{ __('Logo') }}</label>
@@ -90,7 +90,7 @@
 
         {{-- ===== الضريبة ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🧮 {{ __('Tax') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🧮 {{ __('Tax') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Tax name') }}</label><input name="tax_name" value="{{ old('tax_name', $s->tax_name) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Tax percentage') }} %</label><input name="tax_percentage" type="number" step="0.01" min="0" max="100" value="{{ old('tax_percentage', $s->tax_percentage) }}" class="settings-input"></div>
@@ -104,7 +104,7 @@
 
         {{-- ===== الفاتورة والطباعة ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🧾 {{ __('Invoice & printing') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🧾 {{ __('Invoice & printing') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Invoice prefix') }}</label><input name="invoice_prefix" value="{{ old('invoice_prefix', $s->invoice_prefix) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Request prefix') }}</label><input name="request_prefix" value="{{ old('request_prefix', $s->request_prefix) }}" class="settings-input"></div>
@@ -142,7 +142,7 @@
 
         {{-- ===== صفحة طلب العميل ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">📥 {{ __('Public request page') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">📥 {{ __('Public request page') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Max image count') }}</label><input name="max_image_count" type="number" min="1" max="20" value="{{ old('max_image_count', $s->max_image_count) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Max image size (MB)') }}</label><input name="max_image_size_mb" type="number" step="0.1" min="0.1" max="20" value="{{ old('max_image_size_mb', round(($s->max_image_size_kb ?? 3072) / 1024, 1)) }}" class="settings-input"></div>
@@ -160,7 +160,7 @@
 
         {{-- ===== السائقون ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🚚 {{ __('Drivers settings') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🚚 {{ __('Drivers settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div>
                     <label class="settings-label">{{ __('Default payment type') }}</label>
@@ -180,7 +180,7 @@
 
         {{-- ===== المخزون ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">📦 {{ __('Inventory settings') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">📦 {{ __('Inventory settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-2">
                 <div><label class="settings-label">{{ __('Default low stock quantity') }}</label><input name="default_low_stock_quantity" type="number" step="0.01" min="0" value="{{ old('default_low_stock_quantity', $s->inventory_low_stock_threshold) }}" class="settings-input"></div>
             </div>
@@ -193,7 +193,7 @@
 
         {{-- ===== اللغة ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">🌐 {{ __('Language') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">🌐 {{ __('Language') }}</h2>
             <div class="grid gap-4 sm:grid-cols-3">
                 <div>
                     <label class="settings-label">{{ __('Default language') }}</label>
@@ -224,7 +224,7 @@
 
         {{-- ===== عام ===== --}}
         <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <h2 class="mb-4 text-base font-bold text-teal-700">⚙️ {{ __('General settings') }}</h2>
+            <h2 class="mb-4 text-base font-bold text-brand-700">⚙️ {{ __('General settings') }}</h2>
             <div class="grid gap-4 sm:grid-cols-3">
                 <div><label class="settings-label">{{ __('Currency code') }}</label><input name="currency_code" value="{{ old('currency_code', $s->currency_code) }}" class="settings-input"></div>
                 <div><label class="settings-label">{{ __('Currency symbol') }}</label><input name="currency_symbol" value="{{ old('currency_symbol', $s->currency_symbol) }}" class="settings-input"></div>
@@ -237,15 +237,15 @@
         {{-- شريط الحفظ الثابت --}}
         <div class="fixed inset-x-0 bottom-0 border-t border-slate-200 bg-white/95 p-3 backdrop-blur">
             <div class="mx-auto max-w-5xl">
-                <button type="submit" class="w-full rounded-xl bg-teal-600 px-4 py-3 text-base font-semibold text-white hover:bg-teal-700">💾 {{ __('Save settings') }}</button>
+                <button type="submit" class="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-semibold text-white hover:bg-brand-700">💾 {{ __('Save settings') }}</button>
             </div>
         </div>
     </form>
 
     <style>
         .settings-label { display:block; margin-bottom:.25rem; font-size:.875rem; font-weight:500; color:#334155; }
-        .settings-input { width:100%; border-radius:.5rem; border:1px solid #cbd5e1; padding:.5rem .75rem; font-size:.875rem; }
-        .settings-input:focus { outline:none; border-color:#14b8a6; box-shadow:0 0 0 1px #14b8a6; }
+        .settings-input { width:100%; border-radius:.6rem; border:1px solid #cbd5e1; padding:.6rem .8rem; font-size:.875rem; min-height:2.75rem; }
+        .settings-input:focus { outline:none; border-color:var(--color-brand-500); box-shadow:0 0 0 3px color-mix(in srgb, var(--color-brand-500) 25%, transparent); }
         .settings-file { display:block; width:100%; font-size:.8rem; }
     </style>
 @endsection

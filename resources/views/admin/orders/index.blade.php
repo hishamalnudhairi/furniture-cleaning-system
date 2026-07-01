@@ -8,7 +8,7 @@
             'new' => ['label' => __('New'), 'class' => 'bg-slate-100 text-slate-700'],
             'cleaning' => ['label' => __('Cleaning'), 'class' => 'bg-sky-100 text-sky-800'],
             'ready' => ['label' => __('Ready for delivery'), 'class' => 'bg-emerald-100 text-emerald-800'],
-            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-teal-100 text-teal-800'],
+            'delivered' => ['label' => __('Delivered'), 'class' => 'bg-brand-100 text-brand-800'],
             'cancelled' => ['label' => __('Cancelled'), 'class' => 'bg-rose-100 text-rose-700'],
         ];
         $payMeta = [
@@ -28,7 +28,7 @@
     <div class="mb-2 flex flex-wrap gap-2">
         @foreach ($statusTabs as $value => $label)
             <a href="{{ route('admin.orders.index', array_filter(['status' => $value, 'payment' => $payment, 'q' => $search])) }}"
-               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-teal-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
+               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
                 {{ $label }}
             </a>
         @endforeach
@@ -50,8 +50,8 @@
         @if ($payment)<input type="hidden" name="payment" value="{{ $payment }}">@endif
         <input name="q" type="text" value="{{ $search }}"
                placeholder="{{ __('Search by order no., name, or phone.') }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
-        <button type="submit" class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900">{{ __('Search') }}</button>
+               class="field">
+        <button type="submit" class="btn btn-dark shrink-0">{{ __('Search') }}</button>
     </form>
 
     @forelse ($orders as $order)
@@ -59,7 +59,7 @@
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex flex-wrap items-center gap-2">
-                        <span class="font-bold text-teal-700">{{ $order->order_number }}</span>
+                        <span class="font-bold text-brand-700">{{ $order->order_number }}</span>
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusMeta[$order->status]['class'] ?? 'bg-slate-100' }}">{{ $statusMeta[$order->status]['label'] ?? $order->status }}</span>
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $payMeta[$order->payment_status]['class'] ?? 'bg-slate-100' }}">{{ $payMeta[$order->payment_status]['label'] ?? $order->payment_status }}</span>
                     </div>
@@ -75,7 +75,7 @@
                     <p class="mt-1 text-xs text-slate-400">🕒 {{ $order->created_at->format('Y-m-d H:i') }}</p>
                 </div>
                 <a href="{{ route('admin.orders.show', $order) }}"
-                   class="shrink-0 rounded-lg bg-teal-600 px-3 py-2 text-sm font-medium text-white hover:bg-teal-700">{{ __('Details') }}</a>
+                   class="shrink-0 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">{{ __('Details') }}</a>
             </div>
         </div>
     @empty

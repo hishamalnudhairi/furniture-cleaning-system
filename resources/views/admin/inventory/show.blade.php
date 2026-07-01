@@ -20,7 +20,7 @@
     @endphp
 
     <div class="mb-4 flex items-center justify-between gap-3">
-        <a href="{{ route('admin.inventory.index') }}" class="text-sm text-slate-500 hover:text-slate-700">← {{ __('Back to list') }}</a>
+        <a href="{{ route('admin.inventory.index') }}" class="text-sm text-slate-500 hover:text-slate-700"><span class="ib-flip">←</span> {{ __('Back to list') }}</a>
         <a href="{{ route('admin.inventory.edit', $item) }}" class="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-200">{{ __('Edit') }}</a>
     </div>
 

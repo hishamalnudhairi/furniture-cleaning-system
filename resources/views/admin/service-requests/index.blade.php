@@ -7,7 +7,7 @@
         $statusMeta = [
             'pending_review' => ['label' => __('Pending review'), 'class' => 'bg-amber-100 text-amber-800'],
             'contacted' => ['label' => __('Contacted'), 'class' => 'bg-sky-100 text-sky-800'],
-            'confirmed' => ['label' => __('Confirmed'), 'class' => 'bg-teal-100 text-teal-800'],
+            'confirmed' => ['label' => __('Confirmed'), 'class' => 'bg-brand-100 text-brand-800'],
             'cancelled' => ['label' => __('Cancelled'), 'class' => 'bg-rose-100 text-rose-700'],
         ];
         $tabs = [
@@ -27,7 +27,7 @@
     <div class="mb-4 flex flex-wrap gap-2">
         @foreach ($tabs as $value => $label)
             <a href="{{ route('admin.service-requests.index', array_filter(['status' => $value, 'q' => $search])) }}"
-               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-teal-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
+               class="rounded-full px-4 py-1.5 text-sm font-medium transition {{ (string) $status === (string) $value ? 'bg-brand-600 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:bg-slate-100' }}">
                 {{ $label }}
             </a>
         @endforeach
@@ -38,7 +38,7 @@
         @if ($status)<input type="hidden" name="status" value="{{ $status }}">@endif
         <input name="q" type="text" value="{{ $search }}"
                placeholder="{{ __('Search by name, phone, or request no.') }}"
-               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500">
+               class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
         <button type="submit" class="rounded-lg bg-slate-800 px-4 py-2 text-sm font-medium text-white hover:bg-slate-900">{{ __('Search') }}</button>
     </form>
 
@@ -48,7 +48,7 @@
             <div class="flex items-start justify-between gap-3">
                 <div class="min-w-0">
                     <div class="flex items-center gap-2">
-                        <span class="font-bold text-teal-700">{{ $req->request_number }}</span>
+                        <span class="font-bold text-brand-700">{{ $req->request_number }}</span>
                         <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $statusMeta[$req->status]['class'] ?? 'bg-slate-100 text-slate-600' }}">
                             {{ $statusMeta[$req->status]['label'] ?? $req->status }}
                         </span>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <a href="{{ route('admin.service-requests.show', $req) }}"
-                   class="shrink-0 rounded-lg bg-teal-600 px-3 py-2 text-sm font-medium text-white hover:bg-teal-700">
+                   class="shrink-0 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">
                     {{ __('Details') }}
                 </a>
             </div>
